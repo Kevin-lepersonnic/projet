@@ -5,7 +5,7 @@
 @section('content')
     <h1>Poser une question</h1>
 
-    <form action="{{ route('questions.create') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('questions.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 
         @if($errors->any())
