@@ -13,24 +13,26 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                      </li>
+                            <a class="nav-link" href="{{ route('home') }}">Accueil</a>
+                       </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Liste des articles</a>
+                            <a class="nav-link" href="{{ route('questions.index') }}">Questions</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Créer un nouvel article</a>
+                            <a href="{{ route('questions.create') }}" class="nav-link">Créer un nouvel article</a>
                         </li>
-                      
+                        
+
                     </ul>
 
                 </div>
             </nav>
         </header>
-        
+
         <main class="container my-3">
             @yield('content')
         </main>

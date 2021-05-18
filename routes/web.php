@@ -13,5 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-    Route::get('/', [App\Http\Controllers\DefaultController::class, 'home'])->name('home');
-    
+Route::get('/', [App\Http\Controllers\DefaultController::class, 'home'])->name('home');
+Route::get('/questions', [App\Http\Controllers\QuestionController::class, 'index'])->name('questions.index');
+Route::get('/questions/{slug}', [App\Http\Controllers\QuestionController::class, 'show'])->name('questions.show');
+Route::get('/questions/create', [App\Http\Controllers\QuestionController::class, 'create'])->name('questions.create');

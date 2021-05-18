@@ -17,7 +17,8 @@ class CreateQuestionTable extends Migration
             $table->id();
             //creation time
             $table->timestamps();
-            $table->string('title', 100);    
+            $table->string('title', 100);
+            $table->string('slug')->unique();
             $table->text('content');
             //foreign key: user_id
             $table->unsignedBigInteger('user_id');

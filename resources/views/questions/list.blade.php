@@ -1,9 +1,11 @@
 @foreach($questions as $question)
     <article>
         <header>
-            <h3><a href="#">{{ $question->title }}</a></h3>
-            <small>Rédigé par {{ $question->user->name }} le {{ $question->created_at->format('d/m/Y H:i') }}</small>
+            <h3><a href="{{ route('questions.show', ['slug' => $question->slug]) }}">{{ $question->title }}</a></h3>
         </header>
-        {!! nl2br(e($question->content)) !!}
+        <main>
+            <p>{!! nl2br(e($question->content)) !!}</p>
+            <small>Posée le {{ $question->created_at->format('d/m/Y H:i') }} par {{ $question->user->name }}</small>
+        </main>
     </article>
 @endforeach
