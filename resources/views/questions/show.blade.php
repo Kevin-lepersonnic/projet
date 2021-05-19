@@ -6,12 +6,21 @@
     <article>
         <header class="mb-3">
             <h1>{{ $question->title }}</h1>
+            <p>
+                Catégories :
+                <ul>
+                    @foreach($categories as $category)
+                        <li>{{ $category->name }}</li>
+                    @endforeach
+                </ul>
+            </p>
             <small>
                 Rédigé par {{ $question->user->name }} le {{ $question->created_at->format('d/m/Y H:i') }}
             </small>
         </header>
         {!! nl2br(e($question->content)) !!}
     </article>
+    @auth
     <aside>
         <h2>Commentaires</h2>
 
@@ -60,4 +69,7 @@
             @endforeach
         </ul>
     </aside>
+    @else
+    <p id="message">Connectez vous pour Répondre a cette question!</p>
+    @endauth
 @endsection

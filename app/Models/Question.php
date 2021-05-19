@@ -19,8 +19,8 @@ class Question extends Model
         return $this->hasMany(Comment::class);
     }
 
-/*    public function categories()
+    public function categories()
     {
-        return $this->belongsToMany(Category::class, 'categories_Questions');
-    }*/
+        return $this->belongsToMany(Category::class, 'categories_questions');
+    }
 }

@@ -5,7 +5,14 @@
         </header>
         <main>
             <p>{!! nl2br(e(substr($question->content, 0, 200))) !!} <a href="{{ route('questions.show', ['slug' => $question->slug]) }}">[...]</a></p>
-            <small>Posée le {{ $question->created_at->format('d/m/Y H:i') }} par {{ $question->user->name }}</small>
+            
+            <p>
+                @foreach ($question->categories as $category)
+                    {{ $category-> name }}
+                    @endforeach
+            </p>
+            
+            <small>Rédigé par {{ $question->user->name }} le {{ $question->created_at->format('d/m/Y H:i') }}</small>
         </main>
     </article>
 @endforeach

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Category;
 use Illuminate\Support\Str;
+
 
 class QuestionController extends Controller
 {
@@ -16,7 +18,7 @@ class QuestionController extends Controller
     public function index()
     {
         $questions=Question::with('user')->latest()->paginate(10);
-
+        
         return view('questions.index', [
             'questions' => $questions
         ]);
@@ -26,19 +28,23 @@ class QuestionController extends Controller
     {
         $question = Question::where('slug', $slug)->firstOrFail();
         $comments = $question->comments()->latest()->get();
-
+        $categories = $question->categories;
+        
         return view('questions.show', [
             'question' => $question,
-            'comments' => $comments
+            'comments' => $comments,
+            'categories' => $categories
         ]);
     }
 
     public function create()
     {
         $question = Question::all();
+        $categories = Category::all();
 
         return view('questions.create', [
             'question' => $question,
+            'categories' => $categories,
         ]);
     }
     public function store(Request $request)
@@ -55,6 +61,8 @@ class QuestionController extends Controller
         $question->slug = Str::slug($question->title);
         $question->user_id = 1;
         $question->save();
+        
+        $question->categories()->attach($request->input('categories'));
 
 
         return redirect()->route('home');

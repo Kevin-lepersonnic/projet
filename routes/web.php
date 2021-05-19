@@ -24,3 +24,4 @@ Route::get('/users/login', [App\Http\Controllers\UserController::class, 'login']
 Route::post('/users/signin', [App\Http\Controllers\UserController::class, 'signin'])->name('signin');
 Route::get('/users/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 Route::post('/questions/{id}/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('questions.comments');
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
