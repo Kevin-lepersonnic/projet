@@ -22,3 +22,5 @@ Route::get('/users/register', [App\Http\Controllers\UserController::class, 'regi
 Route::post('/users', [App\Http\Controllers\UserController::class, 'signup'])->name('signup');
 Route::get('/users/login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
 Route::post('/users/signin', [App\Http\Controllers\UserController::class, 'signin'])->name('signin');
+Route::get('/users/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::post('/questions/{id}/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('questions.comments');

@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Laravel - @yield('title')</title>
+        <title>LE projet fabuleux - @yield('title')</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
         <script src="{{ secure_asset('js/main.js') }}" defer></script>
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -22,18 +22,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('questions.index') }}">Questions</a>
                         </li>
+                        @auth
                         <li class="nav-item">
                             <a href="{{ route('questions.create') }}" class="nav-link">Créer un nouvel article</a>
                         </li>
-                           <li class="nav-item">
+                        <li class="nav-item">
+                            <a href="{{ route('logout') }}" class="nav-link">Deconnexion</a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}" class="nav-link">Connexion</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('register') }}" class="nav-link">Inscription</a>
                         </li>
-                          </li>
-                           <li class="nav-item">
-                            <a href="{{ route('login') }}" class="nav-link">Log in</a>
-                        </li>
-                        
-
+                        @endauth
                     </ul>
 
                 </div>

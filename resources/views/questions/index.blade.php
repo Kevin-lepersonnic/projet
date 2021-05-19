@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', 'blog')
+@section('title', 'Questions')
 
 @section('content')
 
-    <h1>Liste des Questions</h1>
+    <h1>Toutes les Questions</h1>
 
     <nav>
         {{ $questions->links() }}
