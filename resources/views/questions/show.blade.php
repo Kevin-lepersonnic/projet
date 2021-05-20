@@ -7,23 +7,20 @@
         <header class="mb-3">
             <h1>{{ $question->title }}</h1>
             <p>
-                Catégories :
-                <ul>
-                    @foreach($categories as $category)
-                        <li>{{ $category->name }}</li>
+                <p>
+                    @foreach ($question->categories as $category)
+                        <span class="badge badge-pill badge-success">{{ $category->name }}</span>
                     @endforeach
-                </ul>
+                </p>
             </p>
+        </header>
+            <p>{!! nl2br(e($question->content)) !!}</p>
             <small>
                 Rédigé par {{ $question->user->name }} le {{ $question->created_at->format('d/m/Y H:i') }}
             </small>
-        </header>
-        {!! nl2br(e($question->content)) !!}
     </article>
     @auth
     <aside>
-        <h2>Commentaires</h2>
-
         <form action="{{ route('questions.comments', ['id' => $question->id]) }}" method="post" class="mb-2">
             <fieldset>
                 <legend>Ajouter un commentaire</legend>
@@ -55,6 +52,8 @@
             </fieldset>
         </form>
 
+        <h3>Commentaires</h3>
+
         <ul class="list-unstyled">
             @foreach($comments as $comment)
                 <li>
@@ -70,6 +69,6 @@
         </ul>
     </aside>
     @else
-    <p id="message">Connectez vous pour Répondre a cette question!</p>
+    <p class="h4">Veuillez vous <a href="{{ route('login') }}">connecter</a> pour répondre à cette question.</p>
     @endauth
 @endsection

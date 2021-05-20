@@ -11,9 +11,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+
         return view('users.index', ['users' => $users]);
     }
-        
+
     public function register()
     {
         return view('users.register');
@@ -50,6 +51,9 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials, $rememberMe)) {
             $request->session()->regenerate();
+            $user=auth()->user();
+            $user->last_login = now();
+            $user->save();
 
             return redirect()->intended('/');
         }
@@ -69,6 +73,17 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout', 'index', 'search');
+        $this->middleware('auth')->only('logout', 'index', 'search');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $users = User::where('name', 'like', "%$search%")->get();
+
+        return view('partials.users.index', ['users' => $users]);
     }
 }
+

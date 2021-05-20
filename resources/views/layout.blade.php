@@ -27,10 +27,10 @@
                             <a href="{{ route('questions.create') }}" class="nav-link">Créer un nouvelle Question</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('logout') }}" class="nav-link">Deconnexion</a>
+                            <a href="{{ route('users.index') }}" class="nav-link">Liste des utilisateurs</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('users.index') }}" class="nav-link">Liste des utilisateurs</a>
+                            <a href="{{ route('logout') }}" class="nav-link">Deconnexion</a>
                         </li>
                         @else
                         <li class="nav-item">
